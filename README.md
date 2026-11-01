@@ -9,7 +9,8 @@ you to fill in.
 1. Open **Settings → Community plugins → Default Properties**.
 2. Add the property names you want on new notes.
 3. Turn on the toggle beside each property that should be added.
-4. Use the arrow buttons to set the order.
+4. Drag the handles (or use the arrow buttons on older Obsidian versions) to set
+   the order.
 5. Optionally limit which folders are affected under **Folder scope**.
 6. Create a note. The enabled fields appear in its Properties view with empty
    values.
@@ -41,9 +42,11 @@ By default, every new Markdown note gets the enabled properties. Under
   folders.
 
 Folder paths are relative to the vault root, such as `Daily` or
-`Projects/Work`, and include all subfolders. Matching folders are suggested as
-you type. If **Only in these folders** is selected with no folders listed, no
-notes receive properties.
+`Projects/Work`, and include all subfolders. If **Only in these folders** is
+selected with no folders listed, no notes receive properties.
+
+On Obsidian 1.13 and later, matching folders are suggested as you type, and
+these settings appear in the settings search.
 
 ## License
 

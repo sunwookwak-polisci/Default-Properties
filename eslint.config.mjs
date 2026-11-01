@@ -13,10 +13,6 @@ export default defineConfig([
           allowDefaultProject: ["eslint.config.mjs"]
         }
       }
-    },
-    rules: {
-      // The declarative settings API needs Obsidian 1.13; minAppVersion is 1.5.0.
-      "obsidianmd/settings-tab/prefer-setting-definitions": "off"
     }
   },
   {
