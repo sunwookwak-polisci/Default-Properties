@@ -1,0 +1,26 @@
+name: Bug report
+description: Report a reproducible problem with Default Properties
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Describe the behavior and what you expected instead.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Obsidian version
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Plugin version
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true

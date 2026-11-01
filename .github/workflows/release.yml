@@ -1,0 +1,71 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+  id-token: write
+  attestations: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Verify tag matches manifest and versions
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          manifest_version="$(node -p "require('./manifest.json').version")"
+          package_version="$(node -p "require('./package.json').version")"
+          if [ "$tag" != "$manifest_version" ] || [ "$tag" != "$package_version" ]; then
+            echo "Tag $tag must match manifest.json ($manifest_version) and package.json ($package_version)."
+            exit 1
+          fi
+          node -e "const v=require('./versions.json'); if (!v[process.argv[1]]) { console.error('versions.json is missing ' + process.argv[1]); process.exit(1); }" "$tag"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build plugin
+        run: npm run build
+
+      - name: Collect release assets
+        id: assets
+        run: |
+          files="main.js manifest.json"
+          if [ -f styles.css ]; then files="$files styles.css"; fi
+          {
+            echo "files<<EOF"
+            echo "$files" | tr ' ' '\n'
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: ${{ steps.assets.outputs.files }}
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          generate_release_notes: true
+          files: ${{ steps.assets.outputs.files }}

@@ -1,0 +1,40 @@
+{
+  "name": "obsidian-default-properties",
+  "version": "0.1.0",
+  "description": "Automatically add selected empty property fields to new Obsidian notes.",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "tsc --noEmit --skipLibCheck && node esbuild.config.mjs production",
+    "lint": "eslint .",
+    "test": "node --import tsx --test tests/*.test.ts"
+  },
+  "keywords": [
+    "obsidian",
+    "properties",
+    "frontmatter"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^24.0.0",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.39.5",
+    "eslint-plugin-obsidianmd": "^0.4.2",
+    "globals": "^17.13.0",
+    "obsidian": "^1.8.7",
+    "tslib": "^2.8.1",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.72.1"
+  },
+  "author": "Sunwoo Kwak",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunwookwak-polisci/Default-Properties.git"
+  }
+}

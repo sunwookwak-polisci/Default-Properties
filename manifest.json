@@ -1,0 +1,10 @@
+{
+  "id": "default-properties",
+  "name": "Default Properties",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "Automatically add selected empty property fields to new notes, with optional folder scope.",
+  "author": "Sunwoo Kwak",
+  "isDesktopOnly": false,
+  "authorUrl": "https://github.com/sunwookwak-polisci"
+}
